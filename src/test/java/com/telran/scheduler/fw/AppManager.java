@@ -1,9 +1,12 @@
+package com.telran.scheduler.fw;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class AppManager {
 
@@ -11,6 +14,7 @@ public class AppManager {
     DesiredCapabilities caps;
 
     UserHelper user;
+    EventHelper event;
 
     public void init() throws MalformedURLException {
         caps = new DesiredCapabilities();
@@ -25,7 +29,14 @@ public class AppManager {
 
         driver = new AndroidDriver(new URL("http://127.0.01:4723/wd/hub"), caps);
 
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         user = new UserHelper(driver);
+        event = new EventHelper(driver);
+    }
+
+    public EventHelper event() {
+        return event;
     }
 
     public UserHelper user() {

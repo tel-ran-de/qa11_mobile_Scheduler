@@ -1,3 +1,6 @@
+package com.telran.scheduler.tests;
+
+import com.telran.scheduler.fw.AppManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
