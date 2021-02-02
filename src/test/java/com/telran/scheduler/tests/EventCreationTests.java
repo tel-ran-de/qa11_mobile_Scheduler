@@ -1,5 +1,7 @@
 package com.telran.scheduler.tests;
 
+import com.telran.scheduler.model.User;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -8,7 +10,7 @@ public class EventCreationTests extends TestBase {
     @BeforeMethod
     public void preconditions() {
         if (!app.event().isIconSortOptionsPresent()) {
-            app.user().login("Neuer@gmail.com", "Neuer2021");
+            app.user().login(new User().email("Neuer@gmail.com").password("Neuer2021"));
         }
     }
 
@@ -33,11 +35,13 @@ public class EventCreationTests extends TestBase {
         app.event().tapOnPencillButton();
         Thread.sleep(10000);
 
-        app.event().selectDate();
+        app.event().selectDate("past","FEBRUARY","1");
 
-        app.event().fillCreationForm("Event", "1", 3, "50");
+        app.event().fillCreationForm("Event", "1", 0, "50");
 
         app.event().save();
+
+        Assert.assertTrue(app.event().isEventPresent());
 
         //isElementPresent
     }

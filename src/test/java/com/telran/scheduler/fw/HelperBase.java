@@ -6,6 +6,9 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -56,6 +59,11 @@ public class HelperBase {
                 .perform();
 
 
+    }
+
+    public WebElement waitForElement(By locator, int timeOut) {
+        return new WebDriverWait(driver, timeOut)
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
 

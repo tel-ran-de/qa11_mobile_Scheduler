@@ -1,5 +1,6 @@
 package com.telran.scheduler.fw;
 
+import com.telran.scheduler.model.User;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
@@ -9,10 +10,10 @@ public class UserHelper extends HelperBase{
         super(driver);
     }
 
-    public void login(String email, String password) {
+    public void login(User user) {
 
-        type(By.id("log_email_input"), email);
-        type(By.id("log_password_input"), password);
+        type(By.id("log_email_input"), user.getEmail());
+        type(By.id("log_password_input"), user.getPassword());
         hideKeyboard();
 
         tap(By.id("login_btn"));
