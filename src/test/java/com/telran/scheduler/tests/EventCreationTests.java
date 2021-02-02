@@ -13,15 +13,32 @@ public class EventCreationTests extends TestBase {
     }
 
     @Test
-    public void eventCreationTest() {
+    public void eventCreationTest() throws InterruptedException {
         app.event().initEventCreation();
 
         app.event().tapOnPencillButton();
+        Thread.sleep(10000);
 
-        //fiilEventForm id = info_title_input
-        app.event().fillCreationForm("Event");
+        app.event().fillCreationForm("Event", "1", 3, "50");
 
-        //confirmEventCreation
+        app.event().save();
+
+        //isElementPresent
+    }
+
+    @Test
+    public void eventCreationChangeDataTest() throws InterruptedException {
+        app.event().initEventCreation();
+
+        app.event().tapOnPencillButton();
+        Thread.sleep(10000);
+
+        app.event().selectDate();
+
+        app.event().fillCreationForm("Event", "1", 3, "50");
+
+        app.event().save();
+
         //isElementPresent
     }
 

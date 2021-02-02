@@ -2,6 +2,7 @@ package com.telran.scheduler.fw;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -43,7 +44,11 @@ public class AppManager {
         return user;
     }
 
-    public void stop() {
-        driver.quit();
+    public String getAppVersion() {
+        return driver.findElement(By.id("app_version_res")).getText();
     }
+
+//    public void stop() {
+//        driver.quit();
+//    }
 }
